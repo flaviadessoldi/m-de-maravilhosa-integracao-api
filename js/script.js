@@ -24,18 +24,12 @@ fetch('https://theblackwomanhistory.firebaseio.com/.json')
 
         let foto = document.createElement('img');
         foto.setAttribute('class', 'img-responsive');
-        if (mulheres.metadata) {
-            if (mulheres.metadata.image) {
-                if (mulheres.metadata.image.url) {
-                    foto.setAttribute('src', mulheres.metadata.image.url);
-                }
-            } else {
+        if (mulheres.metadata && mulheres.metadata.image) {
+            foto.setAttribute('src', mulheres.metadata.image.url);
+                } else {
                 foto.setAttribute('src', './img/img-mulher.png');
             }
-        } else {
-            foto.setAttribute('src', './img/img-mulher.png');
-        }
-
+       
                  
         linkMulher.appendChild(foto);
 
