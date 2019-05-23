@@ -1,6 +1,6 @@
 let box = document.querySelector('.maravilhosas__box');
 
-fetch('https://theblackwomanhistory.firebaseio.com/.json')
+fetch('http://localhost:5001/maravilhosas')
 
 .then((response)=>{
     return response.json();
@@ -44,5 +44,42 @@ fetch('https://theblackwomanhistory.firebaseio.com/.json')
 
 .catch((erro)=>{
     console.log(erro)
+})
+
+
+const button = document.getElementById('button');
+button.addEventListener('click', (submeter) => {
+    submeter.preventDefault();
+
+    const nome = document.getElementById('nome').value;
+    const imagem = document.getElementById('imagem').value;
+   
+
+    fetch('http://localhost:5001/maravilhosas', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            'title': nome,
+            'metadata':{
+                'image':{
+                    'url':imagem
+                }
+            }
+        })
+    })
+        .then((response) => {
+            return response.json();
+        })
+        .then((data) => {
+            console.log(data);
+            
+        })
+
+        .catch((erro) => {
+            console.log(erro);
+        })
 })
 
