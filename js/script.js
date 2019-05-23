@@ -65,10 +65,11 @@ button.addEventListener('click', (submeter) => {
             'title': nome,
             'metadata':{
                 'image':{
-                    'url':imagem
+                    'url':imagem,
                 }
             }
         })
+        
     })
         .then((response) => {
             return response.json();
@@ -81,5 +82,7 @@ button.addEventListener('click', (submeter) => {
         .catch((erro) => {
             console.log(erro);
         })
+
+        location.reload(true)
 })
 
