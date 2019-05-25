@@ -38,30 +38,38 @@ fetch('http://localhost:5001/maravilhosas')
 
             linkMulher.appendChild(nomeMulher);
 
-            const button = document.createElement('button');
-            button.setAttribute('data-id', mulheres.id);
-            button.textContent = '✖';
-            perfilMulher.appendChild(button)
 
-            button.addEventListener('click', () => {
-                perfilMulher = button.parentElement;
-                linkMulher = perfilMulher.parentElement;
+            // delete
 
-                fetch('https://reqres.in/api/users', {
+
+
+            const button2 = document.createElement('button');
+            button2.setAttribute('data-id', mulheres.id);
+            button2.textContent = '✖';
+            linkMulher.appendChild(button2)
+
+
+            button2.addEventListener('click', () => {
+                const thisCard = button2.parentElement;
+                const cardMae = thisCard.parentElement;
+                
+                
+                fetch(`http://localhost:5001/maravilhosas/${mulheres.id}`, {
                     method: 'DELETE',
                     headers: {
                         'Accept': 'application/json',
                         'Content-Type': 'application/json'
                     },
-
-                    body: JSON.stringify({
-                        'id': button.getAttribute('data-id')
-                    })
-
+                                       
                 })
+                
+                .then((response) => {
 
-                    .then(() => {
-                        perfilMulher.removeChild(linkMulher)
+                    cardMae.removeChild(thisCard)
+                    console.log('Sucesso!')
+
+
+                    
 
                     })
                     .catch((erro) => {
